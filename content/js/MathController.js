@@ -1,38 +1,41 @@
 function MathController (){
 
-var holder = 0;
+var holder;
+var indexed = 1;
+var replaced = 3;
 this.calculate = function (){
   holder =0;
-
+var signs =['*','/','+','-'];
 this.test= this.count.split(' ');
-//console.log("orginal "+this.test);
+console.log("orginal "+this.test);
 
 for(var i = 0; i < this.test.length; i++){
   for(var i = 0; i < this.test.length; i++){
-  if(this.test.indexOf('*') > -1){
-  holder= parseInt(this.test[this.test.indexOf('*')-1]) * parseInt(this.test[this.test.indexOf('*')+1]);
-  this.test.splice(this.test.indexOf('*')-1,3,holder);
-  console.log("second "+this.test);
+    if(this.test.indexOf(signs[0]) > -1){
+      holder= parseInt(this.test[this.test.indexOf(signs[0])-indexed]) * parseInt(this.test[this.test.indexOf(signs[0])+1]);
+      this.test.splice(this.test.indexOf(signs[0])- indexed,replaced,holder);
+      console.log("second "+this.test);
   }
   };
+
   for(var i = 0; i < this.test.length; i++){
     if(this.test.indexOf('/') > -1){
   holder= parseInt(this.test[this.test.indexOf('/')-1]) / parseInt(this.test[this.test.indexOf('/')+1]);
-  this.test.splice(this.test.indexOf('/')-1,3,holder);
+  this.test.splice(this.test.indexOf('/')-indexed,replaced,holder);
   console.log("third "+this.test);
   }
   };
   for(var i = 0; i < this.test.length; i++){
   if(this.test.indexOf('+') > -1){
-  holder= parseInt(this.test[this.test.indexOf('+')-1]) + parseInt(this.test[this.test.indexOf('+')+1]);
-  this.test.splice(this.test.indexOf('+')-1,3,holder);
+  holder= parseInt(this.test[this.test.indexOf('+')-indexed]) + parseInt(this.test[this.test.indexOf('+')+1]);
+  this.test.splice(this.test.indexOf('+')-indexed,replaced,holder);
   console.log("forth "+this.test);
   }
   };
   for(var i = 0; i < this.test.length; i++){
   if(this.test.indexOf('-') > -1){
-  holder= parseInt(this.test[this.test.indexOf('-')-1]) - parseInt(this.test[this.test.indexOf('-')+1]);
-  this.test.splice(this.test.indexOf('-')-1,3,holder);
+  holder= parseInt(this.test[this.test.indexOf('-')-indexed]) - parseInt(this.test[this.test.indexOf('-')+1]);
+  this.test.splice(this.test.indexOf('-')-indexed,replaced,holder);
   console.log("fifth "+this.test);
   }
   };
